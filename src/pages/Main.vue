@@ -1,5 +1,6 @@
 <template>
   <q-page class="weather-page">
+    <q-card class="main-card">
     <div class="input-section">
       <q-input v-model="newLocation" label="Enter Location" />
       <q-btn @click="addWeatherWidget" label="Add Widget" color="white" text-color="black" />
@@ -37,16 +38,7 @@
         <q-btn @click="removeWidget(index)" label="Remove Widget" color="negative" />
       </q-card>
     </div>
-    <div class="tasks-section">
-      <q-select
-        v-model="selectedTask"
-        :options="tasks"
-        label="Select Task"
-        emit-value
-        map-options
-      />
-      <q-btn @click="navigateToTask" label="Go to Task" color="primary" />
-    </div>
+  </q-card>
   </q-page>
 </template>
 
@@ -99,27 +91,6 @@ const removeWidget = (index) => {
   weatherStore.removeWidget(index);
 };
 
-const tasks = ref([
-  { label: "Tugas 1", value: "https://yazeed-projectcv.netlify.app/" },
-  {
-    label: "Tugas 2", value: "https://palindrome-yaziid.netlify.app/",
-  },
-  { label: "Tugas 3", value: "https://223510209-yaziid.netlify.app/todos" },
-  {
-    label: "Tugas 4", value: "https://photogallery-yaziid.netlify.app/",
-  },
-  { label: "Tugas 5", value: "https://yaziid-223510209-eracoffee.netlify.app/" 
-  },
-  { label: "Tugas 6", value: "https://223510209-yaziid-prakpbkt6.netlify.app/" },
-]);
-
-const selectedTask = ref(null);
-
-const navigateToTask = () => {
-  if (selectedTask.value) {
-    window.open(selectedTask.value, '_blank');
-  }
-};
 </script>
 
 <style scoped>
@@ -132,6 +103,14 @@ const navigateToTask = () => {
   padding: 20px;
 }
 
+.main-card {
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+}
+
 .input-section {
   display: flex;
   gap: 10px;
@@ -142,6 +121,7 @@ const navigateToTask = () => {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  justify-content: center;
 }
 
 .weather-widget {
